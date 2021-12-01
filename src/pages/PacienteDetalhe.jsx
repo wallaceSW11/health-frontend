@@ -1,25 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams, Prompt, useHistory } from "react-router-dom";
 import { HeaderPage } from "../components/header/HeaderPage";
 import { Button } from "react-bootstrap";
 
-import { InputLabel, CheckBox, MaskedLabel } from "../components/inputs/Input";
+import { InputLabel, CheckBox } from "../components/inputs/Input";
 
 import { PacientsCardData } from "../components/cards/pacientscard/PacientsCardData";
 
 export const PacienteDetalhe = () => {
   const history = useHistory();
-
+  const [cpfPaciente, setCpfPaciente] = useState("");
+  const [nomePaciente, setNomePaciente] = useState("");
   const { idPaciente } = useParams();
-  let paciente = "";
 
-  if (idPaciente) {
-    paciente = PacientsCardData.find((p) => p.id == idPaciente);
-  }
+  useEffect(() => {
+
+    var paciente = "";
+
+    if (idPaciente)
+    {
+      // vai utilizar o serviço da API para buscar o cadastro do paciente
+      paciente = PacientsCardData.find(pacient => pacient.id == idPaciente);
+
+      if (paciente)
+      {
+        setCpfPaciente(paciente.cpf)
+        setNomePaciente(paciente.name)
+      }
+
+    }
+  },
+  [idPaciente]);
 
   const handleSubmit = () => {
-    alert("Salvo com sucesso.");
+
+    if (!idPaciente)
+    {
+      PacientsCardData.push({
+        id: 7,
+        cpf: cpfPaciente,
+        name: nomePaciente,
+        age: 42,
+        lastAppointment: "--/--/---- --:--",
+        nextAppointment: "--/--/---- --:--" });
+    }
+
+
+    //alert("Salvo com sucesso.");
+
+
     history.push("/pacientes");
   };
 
@@ -50,27 +80,29 @@ export const PacienteDetalhe = () => {
       <MainForm>
         <Title title="Identificação" />
         <RowGroup>
-          <InputLabel label="CPF:" width="250" value={paciente.id || ""} />
-          <InputLabel label="Nome:" value={paciente.name || ""} />
+          <InputLabel label="CPF:" width="180" widthFixed={true} value={cpfPaciente} onChange={(event => setCpfPaciente(event.target.value))}/>
+          <InputLabel label="Nome:" value={nomePaciente} onChange={(event => setNomePaciente(event.target.value))}/>
         </RowGroup>
-        
-        <InputLabel label="Data de nascimento:" type="date" width="180" />
+
+        <InputLabel label="Data de nascimento:" type="date" width="180" widthFixed={true} />
 
         <Title title="Endereço" />
         <RowGroup>
-          <InputLabel label="CEP:" width="200" />
+          <InputLabel label="CEP:" width="120" widthFixed={true}/>
           <InputLabel label="Logradouro:" />
-          <InputLabel label="Numero:" width="120" />
+          <InputLabel label="Numero:" width="100" widthFixed={true} />
         </RowGroup>
         <RowGroup>
           <InputLabel label="Bairro:" />
           <InputLabel label="Cidade:" />
-          <InputLabel label="UF:" width="100" />
+          <InputLabel label="UF:" width="60" widthFixed={true} />
         </RowGroup>
 
         <Title title="Doenças" />
-        {sicks.map((item) => {
-          return <CheckBox title={item} />;
+        {sicks.map((item, index) => {
+          return (
+            <CheckBox title={item} key={item}/>
+          )
         })}
       </MainForm>
     </>
@@ -91,19 +123,16 @@ const MainForm = styled.div`
   clear: both;
   padding: 15px;
   width: 100%;
-
-  @media screen and (max-width: 700px) {
-    flex-direction: column;
-  }
-
-  /* background-color: black; */
 `;
 
 const RowGroup = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  /* flex-wrap: wrap; */
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = ({ title }) => {

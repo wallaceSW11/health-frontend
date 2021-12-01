@@ -11,7 +11,7 @@ export const PacientsCard = ({ id, name, age, lastAppointment, nextAppointment }
         <ProfileImage />
         <ProfileInformation
           name={name}
-          id={id}        
+          id={id}
           age={age}
           lastAppointment={lastAppointment}
           nextAppointment={nextAppointment}
@@ -30,6 +30,15 @@ const Card = styled.div`
   margin: 10px;
   padding: 5px;
   flex-wrap: nowrap;
+  background-color: #fcfcfc;
+
+  @media screen and (max-width: 400px) {
+    height: 150px;
+  }
+
+  @media screen and (max-width: 383px) {
+    height: 180px;
+  }
 `;
 
 const Container = styled.div`
@@ -45,11 +54,13 @@ const Image = styled.img`
   width: 90px;
   height: 110px;
   object-fit: cover;
+
+  @media screen and (max-width: 334px) {
+     display: none;
+  }
 `;
 
 const ProfileImage = () => {
-  
-  
   return <Image src={ImgProfile}/>;
 };
 
@@ -59,7 +70,7 @@ const ProfileInformation = ({ id, name, age, lastAppointment, nextAppointment })
       <Text title="Paciente:" description={name} />
       <Text title="Idade:" description={age} />
       <Text title="Última consulta:" description={lastAppointment} />
-      <Text title="Próxima consulta:" description={nextAppointment ? nextAppointment : '--/--/-- --:--'} />      
+      <Text title="Próxima consulta:" description={nextAppointment ? nextAppointment : '--/--/-- --:--'} />
       <Actions>
         <Link to={`/pacientes/detalhe/${id}`}>
           <FiEdit />

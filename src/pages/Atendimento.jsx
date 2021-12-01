@@ -6,7 +6,7 @@ import { PacientsCardData } from '../components/cards/pacientscard/PacientsCardD
 
 export const Atendimento = () => {
   let { id } = useParams();
-  let paciente = PacientsCardData.find(p => p.id == id);
+  let paciente = PacientsCardData.find(p => p.id === id);
 
 
 
@@ -15,8 +15,8 @@ export const Atendimento = () => {
             <HeaderPage title="Atendimento" />
             <h2>Atendimento: {id}</h2>
             <span>Paciente: {paciente ? paciente.name : '' }</span>
-           
-            
+
+
         </div>
     )
 }
