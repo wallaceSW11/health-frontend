@@ -8,9 +8,9 @@ export const Home = () => {
 
             <Container>
                 <div>Total de consultas: 32</div>
-                <div>Total de consultas para essa semana: 22</div>                
-            </Container>          
-                        
+                <div>Total de consultas para essa semana: 22</div>
+            </Container>
+
         </div>
     )
 }

@@ -31,13 +31,6 @@ export const SidebarData = [
   {
     title: 'Ajuda',
     path: '/ajuda',
-    icon: <IoIcons.IoMdHelpCircle /> 
-  },
-  {
-    title: 'teste',
-    path: '/pacientes/detalhe/',
-    icon: <IoIcons.IoMdHelpCircle /> 
+    icon: <IoIcons.IoMdHelpCircle />
   }
-
-  
 ];

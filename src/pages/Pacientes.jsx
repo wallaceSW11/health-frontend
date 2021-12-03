@@ -14,7 +14,7 @@ export const Pacientes = () => {
             <HeaderPage title="Pacientes"/>
             <Header>
               <InputGroup className="mb">
-                <FormControl placeholder="Digite o nome do paciente" />
+                <FormControl placeholder="Pesquise pelo o nome do paciente..." />
               </InputGroup>
                 <Registration>
                   <LinkToPrimary text="Novo" path="/pacientes/detalhe" />
@@ -22,16 +22,15 @@ export const Pacientes = () => {
 
             </Header>
             <ListaPacientes>
-
-                    {PacientsCardData.map((item, index) => {
+                    {PacientsCardData.map(item => {
                         return (
                                 <PacientsCard
-                                 id={item.id}
-                                 name={item.name}
-                                 age={item.age}
-                                 lastAppointment={item.lastAppointment}
-                                 nextAppointment={item.nextAppointment}
-                                 key={item.id}/>
+                                  key={item.id}
+                                  id={item.id}
+                                  name={item.name}
+                                  age={item.age}
+                                  lastAppointment={item.lastAppointment}
+                                  nextAppointment={item.nextAppointment}/>
                         )
                         })}
 
@@ -47,7 +46,6 @@ const Container = styled.div`
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  background-color: #ebebeb;
 `;
 
 const Header = styled.header`

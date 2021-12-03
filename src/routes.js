@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom' 
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components';
 import { NavBar } from "./components/navbar"
 import { SideBarMenu } from "./components/sidebar"
-import { 
+import {
     Home,
-    Pacientes, 
-    Atendimento, 
+    Pacientes,
+    Atendimento,
     PacienteDetalhe } from './pages'
 
 export default function Routes() {
@@ -33,5 +33,6 @@ const MainView = styled.div`
   padding-left: var(--width-sidebar-closed);
   width: 100%;
   z-index: 90;
+  background-color: var(--backgroud-color-default);
 
 `;

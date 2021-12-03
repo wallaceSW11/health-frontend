@@ -82,9 +82,18 @@ export const PacienteDetalhe = () => {
         <RowGroup>
           <InputLabel label="CPF:" width="180" widthFixed={true} value={cpfPaciente} onChange={(event => setCpfPaciente(event.target.value))}/>
           <InputLabel label="Nome:" value={nomePaciente} onChange={(event => setNomePaciente(event.target.value))}/>
+          <InputLabel label="Data de nascimento:" type="date" width="180" widthFixed={true} />
         </RowGroup>
 
-        <InputLabel label="Data de nascimento:" type="date" width="180" widthFixed={true} />
+        <Title title="Contato" />
+        <RowGroup full={false}>
+          <InputLabel label="Telefone:" width="180"  widthFixed={true} />
+          <ContactOptions />
+        </RowGroup>
+        <RowGroup>
+          <InputLabel label="E-Mail:" type="email"/>
+        </RowGroup>
+
 
         <Title title="Endereço" />
         <RowGroup>
@@ -134,6 +143,15 @@ const RowGroup = styled.div`
     flex-direction: column;
   }
 `;
+
+const ContactOptions = () => {
+  return (
+      <ul>
+        <li><CheckBox title="WhatsApp"/></li>
+        <li><CheckBox title="Telegram"/></li>
+      </ul>
+  )
+}
 
 const Title = ({ title }) => {
   return (
